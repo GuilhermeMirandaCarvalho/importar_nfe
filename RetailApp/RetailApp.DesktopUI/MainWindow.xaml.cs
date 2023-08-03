@@ -1,5 +1,5 @@
-﻿using RetailApp.Utility;
-using RetailApp.ViewModels;
+﻿using RetailApp.DesktopUI.Fiscal;
+using RetailApp.Utility;
 using RetailApp.ViewModels.Fiscal;
 using System.Windows;
 
@@ -17,14 +17,20 @@ namespace RetailApp.DesktopUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ImportXML();
+            
         }
 
         private void ImportXML()
         {
             string xmlContent = FileUtility.GetStringFromXml();
-            nfeProc nfeProcObj = XmlUtility.XmlToClass<nfeProc>(xmlContent);
+            nfeProc nfeProc = XmlUtility.XmlToClass<nfeProc>(xmlContent);
         }
-       
+
+        private void meiFiscal_Click(object sender, RoutedEventArgs e)
+        {
+            frmInvoiceList frmInvoiceList = new frmInvoiceList();
+            frmInvoiceList.Owner = this;
+            bool? result = frmInvoiceList.ShowDialog();
+        }
     }
 }
